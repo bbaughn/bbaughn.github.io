@@ -1,0 +1,54 @@
+
+a:link {
+	
+	color: #222222;	
+	
+}
+
+body {
+	
+	
+	color: white;
+	background-color: #000000;
+	
+	
+	
+	}
+
+h1 {  font : 150.1% 'lucida sans', 'lucida sans unicode', 'lucida grande', 'trebuchet ms', helvetica, arial, sans-serif; }
+
+#ribbon {
+	
+	background-color: #222222;
+	
+}
+
+#ribbonRed {
+	
+	background-color: #CC0000;
+	
+}
+
+#panel {
+	
+	margin-left: auto ;
+  	margin-right: auto ;
+	
+	width: 760px;
+	padding: 10px;
+	background-color: #222222;
+	
+	font : 100.1% 'lucida sans', 'lucida sans unicode', 'lucida grande', 'trebuchet ms', helvetica, arial, sans-serif;
+	
+}
+
+
+#footer {
+	
+	width: 200px;
+	font : 30% 'lucida sans', 'lucida sans unicode', 'lucida grande', 'trebuchet ms', helvetica, arial, sans-serif;
+	margin-left: auto ;
+  	margin-right: auto ;
+	
+}
+
