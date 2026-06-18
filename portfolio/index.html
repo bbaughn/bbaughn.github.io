@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brian Baughn — Creative Apps Developer</title>
+  <meta name="description" content="Brian Baughn — creative apps developer for mobile & web. Selected work across web apps, iOS, games, and motion graphics." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+  <!-- Social preview (Open Graph + Twitter) — hosted at manufacturingcontent.com/portfolio/ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Brian Baughn — Creative Apps Developer" />
+  <meta property="og:description" content="Creative apps developer for mobile & web. Selected work across web apps, iOS, games, and motion graphics." />
+  <meta property="og:url" content="https://manufacturingcontent.com/portfolio/" />
+  <meta property="og:image" content="https://manufacturingcontent.com/portfolio/img/twisty1.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Brian Baughn — Creative Apps Developer" />
+  <meta name="twitter:description" content="Creative apps developer for mobile & web. Selected work across web apps, iOS, games, and motion graphics." />
+  <meta name="twitter:image" content="https://manufacturingcontent.com/portfolio/img/twisty1.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --ink: #16161a;
+      --muted: #6b6b76;
+      --line: #ececef;
+      --accent: #1a1a1a;
+      --maxw: 940px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-size: 17px;
+    }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+    /* ---------- Hero ---------- */
+    header.hero {
+      padding: clamp(56px, 9vh, 96px) 0 clamp(48px, 8vh, 80px);
+    }
+
+    .eyebrow {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4.6vw, 3rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .bio {
+      font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+      color: var(--muted);
+      font-weight: 400;
+      max-width: 640px;
+      margin-bottom: 24px;
+    }
+
+    .skills {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 640px;
+      margin-bottom: 30px;
+    }
+    .skills li {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .links { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+
+    a.text-link {
+      font-size: 0.98rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      transition: border-color 0.18s ease;
+    }
+    a.text-link:hover { border-color: var(--ink); }
+
+    a.gh-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.98rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.18s ease;
+    }
+    a.gh-link:hover { color: var(--muted); }
+    a.gh-link svg { width: 19px; height: 19px; }
+
+    /* ---------- Projects panes ---------- */
+    .pane {
+      background: #34353b;
+      color: #f4f4f6;
+      border-radius: 20px;
+      padding: clamp(36px, 6vw, 64px) clamp(28px, 5vw, 56px);
+    }
+    .pane + .pane { margin-top: clamp(28px, 4vw, 44px); }
+
+    .pane-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: clamp(36px, 6vw, 56px);
+    }
+    .section-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #9a9aa4;
+    }
+
+    .pane-toggle {
+      flex: none;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #9a9aa4;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .pane-toggle:hover { background: rgba(255,255,255,0.09); color: #f4f4f6; }
+    .pane-toggle svg { width: 16px; height: 16px; transition: transform 0.25s ease; }
+    /* expanded → chevron points up; collapsed → points down */
+    .pane:not(.collapsed) .pane-toggle svg { transform: rotate(180deg); }
+
+    .pane.collapsed .pane-head { margin-bottom: 0; }
+    .pane.collapsed .pane-body { display: none; }
+
+    .pane-foot { text-align: center; margin-top: clamp(36px, 6vw, 56px); }
+    .collapse-link {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8a8a94;
+      padding: 6px 10px;
+      transition: color 0.18s ease;
+    }
+    .collapse-link:hover { color: #f4f4f6; }
+    .collapse-link::before { content: "↑ "; }
+
+    /* light-on-dark overrides inside the pane */
+    .pane .info .tag { color: #9a9aa4; }
+    .pane .info h2 { color: #f4f4f6; }
+    .pane .info p.role { color: #c4c4cc; }
+    .pane .info p.desc { color: #b8b8c0; }
+    .pane .info a.visit { color: #f4f4f6; border-bottom-color: rgba(255,255,255,0.22); }
+    .pane .info a.visit:hover { border-bottom-color: #f4f4f6; }
+    .pane .shot { border-color: rgba(255,255,255,0.12); }
+    .pane .shot:hover { box-shadow: 0 22px 46px -28px rgba(0,0,0,0.7); }
+
+    /* ---------- Projects ---------- */
+    .projects { display: grid; gap: clamp(48px, 8vw, 80px); }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: clamp(28px, 5vw, 56px);
+      align-items: center;
+    }
+
+    .shot {
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .shot:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 46px -28px rgba(0,0,0,0.4);
+    }
+    .shot img { display: block; width: 100%; height: auto; }
+
+    .info .tag {
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .info h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .info p.role { font-size: 0.92rem; color: var(--muted); margin-top: -4px; margin-bottom: 14px; }
+    .info p.desc { color: var(--muted); margin-bottom: 16px; }
+    .info p.status {
+      font-variant: small-caps;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+    .info a.visit {
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2px;
+      transition: border-color 0.18s;
+    }
+    .info a.visit:hover { border-color: var(--ink); }
+    .info a.visit::after { content: " →"; }
+
+    @media (max-width: 700px) {
+      .project { grid-template-columns: 1fr; gap: 22px; }
+      .project .info { order: -1; }
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: clamp(80px, 14vh, 150px);
+      padding: 48px 0 60px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; }
+    footer a:hover { color: var(--ink); }
+    footer svg { width: 17px; height: 17px; }
+    footer .foot-links { display: flex; gap: 22px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="hero">
+      <p class="eyebrow">Creative iOS Engineer · Oakland, CA</p>
+      <h1>Brian Baughn</h1>
+      <p class="bio">Creative iOS engineer with 10+ years of experience building expressive, high-performance apps.</p>
+      <ul class="skills">
+        <li>Swift</li>
+        <li>SwiftUI</li>
+        <li>Combine</li>
+        <li>AVFoundation</li>
+        <li>Concurrency</li>
+        <li>Real-time Media</li>
+        <li>AI/ML Integration</li>
+        <li>Docker</li>
+        <li>AWS/GCP</li>
+      </ul>
+      <nav class="links">
+        <a class="text-link" href="mailto:brian@manufacturingcontent.com">brian@manufacturingcontent.com</a>
+        <a class="text-link" href="Brian-Baughn-Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        <a class="gh-link" href="https://github.com/bbaughn" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <a class="gh-link" href="https://www.linkedin.com/in/brian-baughn-49a23515/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.76-1.75 1.76zm13.5 12.27h-3v-5.6c0-3.37-4-3.12-4 0v5.6h-3v-11h3v1.77c1.4-2.59 7-2.78 7 2.48v6.75z"/></svg>
+          LinkedIn
+        </a>
+      </nav>
+    </header>
+
+    <section class="pane">
+      <div class="pane-head">
+        <h2 class="section-title">Professional Projects</h2>
+        <button class="pane-toggle" type="button" aria-label="Toggle Professional Projects" aria-expanded="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+      <div class="pane-body">
+      <div class="projects">
+
+        <!-- Twisty -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">AI Video</p>
+            <h2>Twisty</h2>
+            <p class="role">Senior Product Engineer · 2023–2024</p>
+            <p class="desc">Personalized AI video generation.</p>
+            <a class="visit" href="https://twisty.ai/" target="_blank" rel="noopener">Visit live site</a>
+          </div>
+          <a class="shot" href="https://twisty.ai/" target="_blank" rel="noopener">
+            <img src="img/twisty1.jpg" alt="Twisty — personalized AI video generation" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+        <!-- Bright -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Live Video</p>
+            <h2>Bright</h2>
+            <p class="role">Senior iOS Engineer · 2020–2022</p>
+            <p class="desc">Live video sessions with creators.</p>
+            <a class="visit" href="https://www.facebook.com/brightlivedotcom" target="_blank" rel="noopener">Visit page</a>
+            <p class="status">no longer active</p>
+          </div>
+          <a class="shot" href="https://www.facebook.com/brightlivedotcom" target="_blank" rel="noopener">
+            <img src="img/bright1.jpg" alt="Bright — live video sessions with creators" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+        <!-- Smule -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Mobile App</p>
+            <h2>Smule</h2>
+            <p class="role">Senior iOS Engineer · 2019</p>
+            <p class="desc">Karaoke app and social network.</p>
+            <a class="visit" href="https://www.smule.com" target="_blank" rel="noopener">Visit live site</a>
+          </div>
+          <a class="shot" href="https://www.smule.com" target="_blank" rel="noopener">
+            <img src="img/smule1.jpg" alt="Smule — karaoke app and social network" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+      </div>
+        <div class="pane-foot">
+          <button class="collapse-link" type="button">Collapse</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="pane collapsed">
+      <div class="pane-head">
+        <h2 class="section-title">Personal Projects</h2>
+        <button class="pane-toggle" type="button" aria-label="Toggle Personal Projects" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+      <div class="pane-body">
+      <div class="projects">
+
+        <!-- CueTips -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Web App</p>
+            <h2>CueTips</h2>
+            <p class="desc">Web app for vinyl DJs for organization and recommendation.</p>
+            <a class="visit" href="https://cuetips.dj" target="_blank" rel="noopener">Visit live site</a>
+            <p class="status">in alpha</p>
+          </div>
+          <a class="shot" href="https://cuetips.dj" target="_blank" rel="noopener">
+            <img src="img/cuetips.jpg" alt="CueTips — vinyl DJ tagging system" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+        <!-- Songbird -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Mobile App</p>
+            <h2>Songbird</h2>
+            <p class="desc">Easy lyric video creation app for iOS.</p>
+            <a class="visit" href="https://manufacturingcontent.com/songbird/" target="_blank" rel="noopener">Visit live site</a>
+          </div>
+          <a class="shot" href="https://manufacturingcontent.com/songbird/" target="_blank" rel="noopener">
+            <img src="img/songbird.jpg" alt="Songbird — lyric video creation app" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+        <!-- Tractor Beam -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Game</p>
+            <h2>Tractor Beam</h2>
+            <p class="desc">Arcade-style game for iOS.</p>
+            <a class="visit" href="https://manufacturingcontent.com/tractorbeam/" target="_blank" rel="noopener">Visit live site</a>
+          </div>
+          <a class="shot" href="https://manufacturingcontent.com/tractorbeam/" target="_blank" rel="noopener">
+            <img src="img/tractorbeam.jpg" alt="Tractor Beam — arcade game" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+      </div>
+        <div class="pane-foot">
+          <button class="collapse-link" type="button">Collapse</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pane collapsed">
+      <div class="pane-head">
+        <h2 class="section-title">Motion Graphics</h2>
+        <button class="pane-toggle" type="button" aria-label="Toggle Motion Graphics" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+      <div class="pane-body">
+      <div class="projects">
+
+        <!-- Three Eyes -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Lyric Video</p>
+            <h2>Three Eyes</h2>
+            <p class="desc">Lyric video for artist Flour Flour using the Processing framework.</p>
+            <a class="visit" href="https://www.youtube.com/watch?v=onrrEW9R-Bg" target="_blank" rel="noopener">Watch on YouTube</a>
+          </div>
+          <a class="shot" href="https://www.youtube.com/watch?v=onrrEW9R-Bg" target="_blank" rel="noopener">
+            <img src="img/threeeyes.jpg" alt="Three Eyes — lyric video for Flour Flour" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+        <!-- Become Animal -->
+        <article class="project">
+          <div class="info">
+            <p class="tag">Lyric Video</p>
+            <h2>Become Animal</h2>
+            <p class="desc">Lyric video for artist Flour Flour using the Processing framework.</p>
+            <a class="visit" href="https://www.youtube.com/watch?v=Z8elxXqxivI" target="_blank" rel="noopener">Watch on YouTube</a>
+          </div>
+          <a class="shot" href="https://www.youtube.com/watch?v=Z8elxXqxivI" target="_blank" rel="noopener">
+            <img src="img/becomeanimal.jpg" alt="Become Animal — lyric video for Flour Flour" width="1600" height="1000" loading="lazy" />
+          </a>
+        </article>
+
+      </div>
+        <div class="pane-foot">
+          <button class="collapse-link" type="button">Collapse</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© Brian Baughn</span>
+      <span class="foot-links">
+        <a href="mailto:brian@manufacturingcontent.com">brian@manufacturingcontent.com</a>
+        <a href="https://github.com/bbaughn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          bbaughn
+        </a>
+      </span>
+    </footer>
+
+  </div>
+
+  <script>
+    document.querySelectorAll('.pane').forEach(function (pane) {
+      var btn = pane.querySelector('.pane-toggle');
+      var toggle = function () {
+        var collapsed = pane.classList.toggle('collapsed');
+        if (btn) btn.setAttribute('aria-expanded', String(!collapsed));
+      };
+      if (btn) btn.addEventListener('click', toggle);
+      var collapseLink = pane.querySelector('.collapse-link');
+      if (collapseLink) collapseLink.addEventListener('click', toggle);
+    });
+  </script>
+</body>
+</html>
